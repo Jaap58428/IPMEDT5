@@ -13,7 +13,10 @@ class AddForeignKeyToMeasurements extends Migration
      */
     public function up()
     {
-        //
+      Schema::table('measurements', function ($table)
+      {
+        $table->foreign('bucket_id')->references('id')->on('bucket');
+      });
     }
 
     /**
@@ -23,6 +26,9 @@ class AddForeignKeyToMeasurements extends Migration
      */
     public function down()
     {
-        //
+      Schema::table('measurements', function ($table)
+      {
+      $table->dropForeign('bucket_id');
+      });
     }
 }
