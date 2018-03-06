@@ -19,7 +19,7 @@ class CreateBucketsTable extends Migration
             $table->string('location');
             $table->dateTime('last_full');
             $table->dateTime('last_empty');
-            $table->integer('emptied_by_user_id');
+            $table->integer('emptied_by_user_id')->unsigned();
         });
     }
 
