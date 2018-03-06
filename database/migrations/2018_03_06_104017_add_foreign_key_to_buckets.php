@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeyToMeasurements extends Migration
+class AddForeignKeyToBuckets extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddForeignKeyToMeasurements extends Migration
      */
     public function up()
     {
-      Schema::table('measurements', function ($table)
+      Schema::table('buckets', function ($table)
       {
-        $table->foreign('bucket_id')->references('id')->on('buckets');
+        $table->foreign('emptied_by_user_id')->references('id')->on('users');
       });
     }
 
@@ -26,9 +26,9 @@ class AddForeignKeyToMeasurements extends Migration
      */
     public function down()
     {
-      Schema::table('measurements', function ($table)
+      Schema::table('buckets', function ($table)
       {
-      $table->dropForeign('bucket_id');
+      $table->dropForeign('emptied_by_user_id');
       });
     }
 }
