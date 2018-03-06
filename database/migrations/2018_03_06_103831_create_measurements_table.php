@@ -16,7 +16,7 @@ class CreateMeasurementsTable extends Migration
         Schema::create('measurements', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('bucket_id');
+            $table->integer('bucket_id');
             $table->string('sensor_a');
             $table->string('sensor_b');
         });
