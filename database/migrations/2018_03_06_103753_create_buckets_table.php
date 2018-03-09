@@ -16,8 +16,8 @@ class CreateBucketsTable extends Migration
         Schema::create('buckets', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->float('latitude');
-            $table->float('longitude');
+            $table->decimal('latitude', 10, 7);
+            $table->decimal('longitude', 10 ,7);
             $table->dateTime('last_full');
             $table->dateTime('last_empty');
             $table->integer('emptied_by_user_id')->unsigned();
