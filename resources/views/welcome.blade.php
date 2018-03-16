@@ -22,7 +22,7 @@
     <div class="welcome-login">
       @if (Route::has('login'))
         @auth
-          <a href="{{ url('/home') }}">Home</a>
+          <a href="{{ url('/map') }}">Home</a>
         @else
           @include('auth.login')
         @endauth
