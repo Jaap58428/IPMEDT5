@@ -17,4 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PagesController@map');
+
+Route::get('/home/getGeoJSON', 'PagesController@getGeoJSON');
+
+Route::get('/list', 'PagesController@list');
+
+Route::get('/settings', 'PagesController@settings');
