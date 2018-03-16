@@ -16,9 +16,9 @@
 <body>
     <nav>
       <div class="navbar" id="navbar">
-       <a href="/home">SpotLess</a>
+       <a href="/map">SpotLess</a>
        <a href="/list">Lijst</a>
-        <a href="/settings">Instellingen</a>
+       <a href="/settings">Instellingen</a>
        <a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">

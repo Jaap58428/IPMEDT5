@@ -53,4 +53,9 @@ class PagesController extends Controller
     {
       return view('pages.settings');
     }
+
+    public function newUser()
+    {
+      return view('pages.new-user');
+    }
 }
