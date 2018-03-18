@@ -17,12 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/map', 'PagesController@map');
-
-Route::get('/map/getGeoJSON', 'PagesController@getGeoJSON');
-
-Route::get('/list', 'PagesController@list');
+Route::get('/home', 'PagesController@map');
 
 Route::get('/settings', 'PagesController@settings');
 
 Route::get('/settings/new-user', 'PagesController@newUser');
+
+Route::resource('buckets', 'BucketsController');

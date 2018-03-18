@@ -33,6 +33,5 @@
 
     <div class="login-field">
       <button type="submit">Login</button>
-      <button type="button" name="button" onclick="window.alert('Neem contact op met uw werkgever.')">Wachtwoord vergeten?</button>
     </div>
 </form>

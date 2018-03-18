@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// List the measurements
+Route::get('measurements', 'MeasurementController@index');
+
+// Create new measurement
+Route::post('measurement', 'MeasurementController@store');

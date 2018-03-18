@@ -16,9 +16,11 @@
 <body>
     <nav>
       <div class="navbar" id="navbar">
-       <a href="/map">SpotLess</a>
-       <a href="/list">Lijst</a>
-       <a href="/settings">Instellingen</a>
+       <a href="/home">SpotLess</a>
+       <a href="/buckets">Lijst</a>
+       @if (Auth::user()->isAdmin)
+         <a href="/settings">Instellingen</a>
+       @endif
        <a href="{{ route('logout') }}"
           onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">

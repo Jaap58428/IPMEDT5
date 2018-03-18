@@ -34,15 +34,6 @@ class PagesController extends Controller
       return null;
     }
 
-    /**
-     * Show the list of trashbuckets.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function list()
-    {
-      return view('pages.list');
-    }
 
     /**
      * Show the application settings.

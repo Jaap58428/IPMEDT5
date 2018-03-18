@@ -15,6 +15,7 @@ class BucketTableSeeder extends Seeder
         ['latitude' => 52.208088, 'longitude' => 4.395012, 'last_full' => date('Y-m-d H:i:s', mktime(12,11,00,3,5,2018)), 'last_empty' => date('Y-m-d H:i:s', mktime(14,11,00,3,6,2018)), 'emptied_by_user_id' => 1],
         ['latitude' => 52.206641, 'longitude' => 4.393720, 'last_full' => date('Y-m-d H:i:s', mktime(12,11,00,3,9,2018)), 'last_empty' => date('Y-m-d H:i:s', mktime(16,11,00,3,12,2018)), 'emptied_by_user_id' => 1],
         ['latitude' => 52.199438, 'longitude' => 4.387083, 'last_full' => date('Y-m-d H:i:s', mktime(22,11,00,3,9,2018)), 'last_empty' => date('Y-m-d H:i:s', mktime(12,11,00,3,9,2018)), 'emptied_by_user_id' => 2],
+        ['latitude' => 52.193460, 'longitude' => 4.381083, 'last_full' => date('Y-m-d H:i:s', mktime(11,11,00,3,9,2018)), 'last_empty' => date('Y-m-d H:i:s', mktime(16,11,00,3,9,2018)), 'emptied_by_user_id' => 2],
       ];
 
       foreach ($bucket_list as $bucket) {

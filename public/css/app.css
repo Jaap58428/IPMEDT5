@@ -11,7 +11,6 @@ body {
 .navbar {
     background-color: #222;
     overflow: hidden;
-    transition: all 0.5s;
 }
 
 .navbar a {
@@ -24,17 +23,12 @@ body {
     font-size: 17px;
 }
 
-.active {
-    background-color: blue;
-    color: white;
-}
-
 .navbar .icon {
     display: none;
 }
 
 .navbar a:hover {
-    background-color: #555;
+    background-color: blue;
     color: white;
 }
 
@@ -72,4 +66,35 @@ main {
   height: 85vh;
   width: 100%;
   margin: 2rem 0;
+}
+
+ul a {
+  text-decoration: none;
+  color: black;
+}
+
+.list-item {
+  list-style: none;
+  padding: 1rem;
+  background-color: lightgrey;
+  width: calc(100% - 2rem);
+  border-left: lightgrey 5px solid;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  border-left: blue 5px solid;
+}
+
+.list-small {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0.3rem 0;
+  color: grey;
+}
+
+.list-vol {
+  color: red;
 }

@@ -22,14 +22,11 @@
     <div class="welcome-login">
       @if (Route::has('login'))
         @auth
-          <a href="{{ url('/map') }}">Home</a>
+          <a href="{{ url('/home') }}">Home</a>
         @else
           @include('auth.login')
         @endauth
       @endif
-    </div>
-    <div class="credits">
-      Made by Galaxy Gadgets
     </div>
   </div>
 </body>
