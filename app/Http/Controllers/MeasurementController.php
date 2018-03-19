@@ -31,20 +31,32 @@ class MeasurementController extends Controller
      */
     public function store(Request $request)
     {
-        $measurement = new Measurement;
-        $measurement->bucket_id = $request->input('bucket_id');
-        $measurement->sensor_a = $request->input('sensor_a');
-        $measurement->sensor_b = $request->input('sensor_b');
+      // Check if an instance of this bucket already exists
+      $bucketCount = (Bucket::where('id', $request->input('bucket_id'))->count());
+      $bucketFull = ($request->input('sensor_a') > 20) && ($request->input('sensor_a') > 20);
 
-        if ($measurement->save()) {
+      // Find or Create a bucket and update its values
+      if ($bucketCount == 0) {
+        $bucket = new Bucket;
+      } else {
+        $bucket = Bucket::find($request->input('bucket_id'));
+      }
 
-          if ((int)$measurement->sensor_a > 20 && (int)$measurement->sensor_a > 20) {
-            $measurement->bucket->last_full = date("Y-m-d H:i:s");
-          } else {
-            $measurement->bucket->last_empty = date("Y-m-d H:i:s");
-          }
-          return $measurement;
-        }
+      if ($bucketFull) {
+        $bucket->last_full = date("Y-m-d H:i:s");
+      } else {
+        $bucket->last_empty = date("Y-m-d H:i:s");
+      }
+
+      $measurement = new Measurement;
+      $measurement->bucket_id = $request->input('bucket_id');
+      $measurement->sensor_a = $request->input('sensor_a');
+      $measurement->sensor_b = $request->input('sensor_b');
+
+
+      if ($bucket->save() && $measurement->save()) {
+        return $measurement;
+      }
     }
 
 }
