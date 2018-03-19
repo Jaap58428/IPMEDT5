@@ -27,15 +27,6 @@ class PagesController extends Controller
     }
 
     /**
-     * Returns the GeoJSON of bucket coordinates
-     */
-    public function getGeoJSON()
-    {
-      return null;
-    }
-
-
-    /**
      * Show the application settings.
      *
      * @return \Illuminate\Http\Response

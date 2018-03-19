@@ -1,8 +1,16 @@
 body {
+  background-image: url('/img/katwijk-bg3.jpg');
+  background-size: cover;
+  margin: auto;
+  padding: 0;
+}
+.wrapper {
   font-family: 'Roboto', sans-serif;
   background-color: white;
-  margin: 0;
+  margin: auto;
   padding: 0;
+  max-width: 1280px;
+  height: 100vh;
 }
 
 .navbar {
@@ -58,7 +66,6 @@ body {
 
 main {
   margin: 0 auto;
-  max-width: 960px;
 }
 
 .page-title {
@@ -68,6 +75,7 @@ main {
 #map {
   height: calc(100% - 7rem);
   width: 100%;
+  max-width: 1280px;
   margin: 0;
   position: absolute;
   bottom: 0;

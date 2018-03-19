@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'SpotLess') }}</title>
+    <meta name="description" content="Een web applicatie die detecteerd of de prullenbakken van Katwijk vol zijn.">
+
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -14,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto" rel="stylesheet">
 </head>
 <body>
+  <div class="wrapper">
     <nav>
       <div class="navbar" id="navbar">
        <a href="/home">SpotLess</a>
@@ -50,5 +54,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+  </div>
 </body>
 </html>
