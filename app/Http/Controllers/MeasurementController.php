@@ -33,7 +33,6 @@ class MeasurementController extends Controller
     {
       // Check if an instance of this bucket already exists
       $bucketCount = (Bucket::where('id', $request->input('bucket_id'))->count());
-      $bucketFull = ($request->input('sensor_a') > 20) && ($request->input('sensor_a') > 20);
 
       // Find or Create a bucket and update its values
       if ($bucketCount == 0) {
@@ -42,6 +41,7 @@ class MeasurementController extends Controller
         $bucket = Bucket::find($request->input('bucket_id'));
       }
 
+      $bucketFull = ($request->input('sensor_a') > 20) && ($request->input('sensor_b') > 20);
       if ($bucketFull) {
         $bucket->last_full = date("Y-m-d H:i:s");
       } else {

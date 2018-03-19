@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bucket;
+use App\Measurement;
 
 class BucketsController extends Controller
 {
@@ -51,7 +52,7 @@ class BucketsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -63,9 +64,11 @@ class BucketsController extends Controller
     public function show($id)
     {
       $bucket = Bucket::findOrFail($id);
+      $measurements = Measurement::where('bucket_id', $bucket->id)->latest('updated_at')->get();
 
       $data = array(
-        'bucket' => $bucket
+        'bucket' => $bucket,
+        'measurements' => $measurements
       );
 
       return view('buckets.show')->with($data);
