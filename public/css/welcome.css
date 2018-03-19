@@ -66,5 +66,5 @@ body {
 }
 
 .login-field button:hover {
-  border-left: 5px solid blue;
+  border-left: 5px solid #0082a5;
 }

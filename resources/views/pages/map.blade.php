@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <h2>Kaart met prullenbakken</h2>
+  <h2 class="page-title">Kaart met prullenbakken</h2>
   <div id="map"></div>
   <script>
     var map;

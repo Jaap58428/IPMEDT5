@@ -1,15 +1,12 @@
-* {
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: white;
-}
-
 .navbar {
-    background-color: #222;
+    background-color: #0082a5;
     overflow: hidden;
 }
 
@@ -28,7 +25,7 @@ body {
 }
 
 .navbar a:hover {
-    background-color: blue;
+    background-color: #222;
     color: white;
 }
 
@@ -45,6 +42,7 @@ body {
 @media screen and (max-width: 600px) {
   .navbar.responsive {
     position: relative;
+    z-index: 1;
   }
   .navbar.responsive a.icon {
     position: absolute;
@@ -59,32 +57,43 @@ body {
 }
 
 main {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.page-title {
   margin: 1rem;
 }
 
 #map {
-  height: 85vh;
+  height: calc(100% - 7rem);
   width: 100%;
-  margin: 2rem 0;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
 }
 
-ul a {
+.bucketlist {
+  margin: 0;
+  padding: 0;
+}
+
+.bucketlistul a {
   text-decoration: none;
-  color: black;
 }
 
-.list-item {
+.bucketlist .list-item {
   list-style: none;
-  padding: 1rem;
-  background-color: lightgrey;
-  width: calc(100% - 2rem);
+  padding: 1rem calc(1rem - 5px);
+  background-color: white;
+  width: calc(100% - 2rem - 5px;);
   border-left: lightgrey 5px solid;
   transition: all 0.2s;
   cursor: pointer;
 }
 
 .list-item:hover {
-  border-left: blue 5px solid;
+  border-left: #0082a5 5px solid;
 }
 
 .list-small {
@@ -95,6 +104,35 @@ ul a {
   color: grey;
 }
 
-.list-vol {
+.span-full {
   color: red;
+}
+
+.list-item.list-empty {
+}
+
+.list-item.list-full {
+  border-left: #d34c4e 5px solid;
+}
+.list-item.list-full:hover {
+  border-left: red 5px solid;
+}
+
+.bucket-details-lijst {
+  margin: 1rem;
+}
+
+hr {
+  margin: 1rem;
+  border-style: inset;
+  border: lightgrey 1px solid;
+}
+
+.measurement-list {
+  padding: 0;
+  list-style: none;
+}
+
+.measurement-list li{
+  margin: 1.5rem 0;
 }
