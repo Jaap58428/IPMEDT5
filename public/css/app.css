@@ -130,7 +130,8 @@ main {
 }
 
 .bucket-details-lijst {
-  margin: 1rem;
+  padding: 0.1rem 1rem;
+  background-color: #444;
 }
 
 hr {
@@ -146,4 +147,12 @@ hr {
 
 .measurement-list li{
   margin: 1.5rem 0;
+  color: lightgrey;
+}
+
+#maplocal {
+  height: 40vh;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0;
 }

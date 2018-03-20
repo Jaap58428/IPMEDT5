@@ -12,10 +12,57 @@
     @endif
     <p>Laatste lege meting<br/> {{$bucket->last_empty}}</p>
     <p>Laatste volle meting<br/> {{$bucket->last_full}}</p>
-  </div>
-  <div class="bucket-details-lijst">
     <p>Er zijn {{count($measurements)}} metingen bekend.</p>
-    <hr>
+  </div>
+  <div id="maplocal"></div>
+  <script>
+    var map;
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('maplocal'), {
+        zoom: 16,
+        center: new google.maps.LatLng({{$bucket->latitude}}, {{$bucket->longitude}}),
+        mapTypeId: 'terrain',
+        disableDefaultUI: true
+      });
+
+      var icons = {
+        full_dump: {
+          icon: '/img/full.png'
+        },
+        empty_dump: {
+          icon: '/img/empty.png'
+        },
+      };
+
+      var marker{{$bucket->id}} = new google.maps.Marker({
+        position: new google.maps.LatLng({{$bucket->latitude}}, {{$bucket->longitude}}),
+        @if ($bucket->last_empty < $bucket->last_full)
+          icon: icons.full_dump.icon,
+        @else
+          icon: icons.empty_dump.icon,
+        @endif
+        map: map
+      });
+
+    }
+
+
+
+    window.eqfeed_callback = function(results) {
+      for (var i = 0; i < results.features.length; i++) {
+        var coords = results.features[i].geometry.coordinates;
+        var latLng = new google.maps.LatLng(coords[1],coords[0]);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      }
+    }
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCH8tOny2YinK_sZe-vD2pMVacY8zh4YrA&callback=initMap">
+  </script>
+  <div class="bucket-details-lijst">
     @if (count($measurements) > 0)
       <ul class="measurement-list">
         @foreach ($measurements as $measurement)
