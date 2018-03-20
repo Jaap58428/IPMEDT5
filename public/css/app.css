@@ -1,5 +1,6 @@
 body {
   background-image: url('/img/katwijk-bg.jpg');
+  background-color: white;
   background-size: cover;
   margin: auto;
   padding: 0;
@@ -40,6 +41,9 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  body {
+    background-image: url();
+  }
   .navbar a:not(:first-child) {
     display: none;
   }
@@ -47,9 +51,6 @@ body {
     float: right;
     display: block;
   }
-}
-
-@media screen and (max-width: 600px) {
   .navbar.responsive {
     position: relative;
     z-index: 1;

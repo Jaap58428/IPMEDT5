@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Bucket;
 
 class PagesController extends Controller
 {
@@ -23,7 +24,18 @@ class PagesController extends Controller
      */
     public function map()
     {
-        return view('pages.map');
+      $coordinates = Bucket::all();
+      $mapCenter = [
+        'lat' => 52.209868,
+        'lng' => 4.396633
+      ];
+
+      $data = array(
+        'mapCenter' => $mapCenter,
+        'coordinates' => $coordinates
+      );
+
+      return view('pages.map')->with($data);
     }
 
     /**

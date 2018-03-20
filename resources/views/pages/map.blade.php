@@ -6,17 +6,37 @@
   <script>
     var map;
     function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: new google.maps.LatLng(52.209868, 4.396633),
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: new google.maps.LatLng({{$mapCenter['lat']}}, {{$mapCenter['lng']}}),
         mapTypeId: 'terrain',
         disableDefaultUI: true
       });
 
-      // var script = document.createElement('script');
-      // script.src = map.data.loadGeoJson('/home/getGeoJSON');
-      // document.getElementsByTagName('head')[0].appendChild(script);
+      var icons = {
+        full_dump: {
+          icon: '/img/full.png'
+        },
+        empty_dump: {
+          icon: '/img/empty.png'
+        },
+      };
+
+      @foreach ($coordinates as $coordinate)
+        var marker{{$coordinate->id}} = new google.maps.Marker({
+          position: new google.maps.LatLng({{$coordinate->latitude}}, {{$coordinate->longitude}}),
+          @if ($coordinate->last_empty < $coordinate->last_full)
+            icon: icons.full_dump.icon,
+          @else
+            icon: icons.empty_dump.icon,
+          @endif
+          map: map
+        });
+      @endforeach
+
     }
+
+
 
     window.eqfeed_callback = function(results) {
       for (var i = 0; i < results.features.length; i++) {
