@@ -31,8 +31,6 @@ class MeasurementController extends Controller
      */
     public function store(Request $request)
     {
-      return $request;
-
       // Check if an instance of this bucket already exists
       $bucketCount = (Bucket::where('id', $request->input('bucket_id'))->count());
 
