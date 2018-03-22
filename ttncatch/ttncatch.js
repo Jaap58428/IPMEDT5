@@ -1,25 +1,26 @@
 var http = require('http')
 var ttn = require("ttn")
-var fs = require('fs');
+// Set credentials for TTN network
 const appID = 'spotless'
 const accessKey = 'ttn-account-v2.VUbE0HHN0NRxMbhvGu7vgtM7BS-Bg9rNyURJlN_3hEw'
+// Set target domain or IP of SpotLess application
+const targetIP = '136.144.183.59'
 
 // Welcome message for console
 console.log('-------------------------------------------------');
 console.log("Start CatchTTN")
-console.log("A Node.JS application to convert TTN data to JSON")
-console.log("Version: 1.0.0")
+console.log("A Node.JS application to bridge TTN and SpotLess")
+console.log("Input: JSONs in bytes\n Output: POST request to API")
+console.log("Version: 1.2")
 console.log('-------------------------------------------------\n');
 
-// 136.144.183.59/groep_g/public/api/measurement
-
+// Start listening to TTN network for packages on certain account
 ttn.data(appID, accessKey)
   .then(function (client) {
     client.on("uplink", function (devID, payload) {
-      console.log(payload);
       // Convert the buffer to a string and parse it to a JSON object
       let results = JSON.parse(payload.payload_raw.toString())
-      // Parse the metadata to a bucket id value
+      // Parse the payload metadata (input) and add to JSON
       results['bucket_id'] = payload.dev_id.substr(16)
 
       // Log data to console for feedback
@@ -29,6 +30,8 @@ ttn.data(appID, accessKey)
       console.log('Latitude: ' + results.LAT)
       console.log('Longitude: ' + results.LNG)
       console.log()
+
+      // Send data off to be handled by virtual server
       postData(results)
     })
   })
@@ -38,19 +41,21 @@ ttn.data(appID, accessKey)
   })
 
 function postData(json_data) {
+  // Set the options for the http request
   var options = {
-      hostname: '136.144.183.59',
-      port: 80,
-      path: '/groep_g/public/api/measurement',
-      method: 'POST',
+      hostname: targetIP,  // Is set globally
+      port: 80,  // Universal HTTP port
+      path: '/api/measurement',  // Path to the running API
+      method: 'POST',  //Required for Laravel API
       headers: {
+          // The API expects raw JSON data
           'Content-Type': 'application/json',
         }
       };
+
+  // Set up the http request
   var req = http.request(options, function(res) {
-    console.log('Status: ' + res.statusCode);
-    console.log('Headers: ' + JSON.stringify(res.headers));
-    res.setEncoding('utf8');
+    res.setEncoding('utf8');  // Set encoding, utf8 is default
     res.on('data', function (body) {
       console.log('Body: ' + body);
     });
@@ -58,5 +63,6 @@ function postData(json_data) {
   req.on('error', function(e) {
     console.log('problem with request: ' + e.message);
   });
+  // Send the JSON data off to SpotLess
   req.write(JSON.stringify(json_data));
 }
