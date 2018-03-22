@@ -19,7 +19,7 @@ class BucketsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Show a list of all the buckets.
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,7 +35,7 @@ class BucketsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified bucket.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="page-title">
-    <a href="/groep_g/public/buckets">Terug naar lijst</a>
+    <a href="/buckets">Terug naar lijst</a>
     <h2>Details over prullenbak {{$bucket->id}}</h2>
     Deze bak is nu
     @if ($bucket->last_empty < $bucket->last_full)
@@ -27,10 +27,10 @@
 
       var icons = {
         full_dump: {
-          icon: '/groep_g/public/img/full.png'
+          icon: '/img/full.png'
         },
         empty_dump: {
-          icon: '/groep_g/public/img/empty.png'
+          icon: '/img/empty.png'
         },
       };
 

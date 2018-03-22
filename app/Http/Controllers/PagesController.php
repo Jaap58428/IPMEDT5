@@ -48,6 +48,11 @@ class PagesController extends Controller
       return view('pages.settings');
     }
 
+    /**
+     * Show the new user page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function newUser()
     {
       return view('pages.new-user');

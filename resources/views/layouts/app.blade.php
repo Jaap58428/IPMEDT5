@@ -20,10 +20,10 @@
   <div class="wrapper">
     <nav>
       <div class="navbar" id="navbar">
-       <a href="/groep_g/public/home">SpotLess</a>
-       <a href="/groep_g/public/buckets">Lijst</a>
+       <a href="/home">SpotLess</a>
+       <a href="/buckets">Lijst</a>
        @if (Auth::user()->isAdmin)
-         <a href="/groep_g/public/settings">Instellingen</a>
+         <a href="/settings">Instellingen</a>
        @endif
        <a href="{{ route('logout') }}"
           onclick="event.preventDefault();

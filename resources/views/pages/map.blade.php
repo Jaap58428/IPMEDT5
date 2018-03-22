@@ -15,10 +15,10 @@
 
       var icons = {
         full_dump: {
-          icon: '/groep_g/public/img/full.png'
+          icon: '/img/full.png'
         },
         empty_dump: {
-          icon: '/groep_g/public/img/empty.png'
+          icon: '/img/empty.png'
         },
       };
 

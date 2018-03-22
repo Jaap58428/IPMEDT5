@@ -14,7 +14,7 @@
 <body>
   <div class="welcome-wrapper">
     <div class="welcome-logo">
-      <img src="/groep_g/publicimg/logo_katwijk.png" alt="The logo of Gemeente Katwijk">
+      <img src="/img/logo_katwijk.png" alt="The logo of Gemeente Katwijk">
     </div>
     <div class="welcome-title">
       <h1>SpotLess</h1>
@@ -22,7 +22,7 @@
     <div class="welcome-login">
       @if (Route::has('login'))
         @auth
-          <a href="{{ url('/groep_g/public/home') }}">Home</a>
+          <a href="{{ url('/home') }}">Home</a>
         @else
           @include('auth.login')
         @endauth

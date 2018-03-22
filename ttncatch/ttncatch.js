@@ -11,12 +11,12 @@ console.log("A Node.JS application to convert TTN data to JSON")
 console.log("Version: 1.0.0")
 console.log('-------------------------------------------------\n');
 
-
 // 136.144.183.59/groep_g/public/api/measurement
 
 ttn.data(appID, accessKey)
   .then(function (client) {
     client.on("uplink", function (devID, payload) {
+      console.log(payload);
       // Convert the buffer to a string and parse it to a JSON object
       let results = JSON.parse(payload.payload_raw.toString())
       // Parse the metadata to a bucket id value
@@ -53,22 +53,10 @@ function postData(json_data) {
     res.setEncoding('utf8');
     res.on('data', function (body) {
       console.log('Body: ' + body);
-      // fs.writeFile("test.txt", body, function(err) {
-      // if(err) {
-      //   return console.log(err);
-      // }
-      //   console.log("The file was saved!");
-      // });
     });
   });
   req.on('error', function(e) {
     console.log('problem with request: ' + e.message);
   });
-  // write data to request body
-  // req.write('{"string": result}');  ///RESULT HERE IS A JSON
-
-  // result = '{ "hello": "json" }';
   req.write(JSON.stringify(json_data));
-
-
 }
