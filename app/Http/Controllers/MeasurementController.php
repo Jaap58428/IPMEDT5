@@ -50,8 +50,8 @@ class MeasurementController extends Controller
 
       $measurement = new Measurement;
       $measurement->bucket_id = $request->input('bucket_id');
-      $measurement->sensor_a = $request->input('sensor_a');
-      $measurement->sensor_b = $request->input('sensor_b');
+      $measurement->sensor_a = $request->input('SA');
+      $measurement->sensor_b = $request->input('SB');
 
 
       if ($bucket->save() && $measurement->save()) {
