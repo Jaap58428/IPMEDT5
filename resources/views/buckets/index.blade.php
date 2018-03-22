@@ -9,7 +9,7 @@
     <ul class="bucketlist">
       @foreach ($buckets as $bucket)
         <li
-        onclick="location.href='/buckets/{{$bucket->id}}'"
+        onclick="location.href='/groep_g/public/buckets/{{$bucket->id}}'"
         @if ($bucket->last_full > $bucket->last_empty)
           class="list-item list-full"
           @else
