@@ -53,12 +53,12 @@ function postData(json_data) {
     res.setEncoding('utf8');
     res.on('data', function (body) {
       console.log('Body: ' + body);
-      fs.writeFile("test.txt", body, function(err) {
-      if(err) {
-        return console.log(err);
-      }
-        console.log("The file was saved!");
-      });
+      // fs.writeFile("test.txt", body, function(err) {
+      // if(err) {
+      //   return console.log(err);
+      // }
+      //   console.log("The file was saved!");
+      // });
     });
   });
   req.on('error', function(e) {
