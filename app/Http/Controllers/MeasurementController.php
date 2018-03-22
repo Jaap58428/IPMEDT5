@@ -41,8 +41,7 @@ class MeasurementController extends Controller
         $bucket = Bucket::find($request->input('bucket_id'));
       }
 
-      $bucketFull = ($request->input('SA') > 20) && ($request->input('SB') > 20);
-      if ($bucketFull) {
+      if (($request->input('SA') < 20) && ($request->input('SB') < 20)) {
         $bucket->last_full = date("Y-m-d H:i:s");
       } else {
         $bucket->last_empty = date("Y-m-d H:i:s");
