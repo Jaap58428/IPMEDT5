@@ -25,6 +25,8 @@
       @foreach ($coordinates as $coordinate)
         var marker{{$coordinate->id}} = new google.maps.Marker({
           position: new google.maps.LatLng({{$coordinate->latitude}}, {{$coordinate->longitude}}),
+          label: '{{$coordinate->id}}',
+          animation: google.maps.Animation.DROP,
           @if ($coordinate->last_empty < $coordinate->last_full)
             icon: icons.full_dump.icon,
           @else
