@@ -33,7 +33,7 @@ class MeasurementController extends Controller
 
       // When a measurement is over the limit this will be marked as a last_full in the bucket id
       // Otherwise it will be last_empty
-      $bucketFull = (($request->input('SA') < $bucketLimit) && ($request->input('SB') < $bucketLimit))
+      $bucketFull = (($request->input('SA') < $bucketLimit) && ($request->input('SB') < $bucketLimit));
       if ($bucketFull) {
         $bucket->last_full = date("Y-m-d H:i:s");
       } else {
