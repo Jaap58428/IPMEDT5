@@ -28,7 +28,3 @@ Route::get('/settings', 'PagesController@settings');
 Route::get('/settings/new-user', 'PagesController@newUser');
 
 Route::resource('buckets', 'BucketsController');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
