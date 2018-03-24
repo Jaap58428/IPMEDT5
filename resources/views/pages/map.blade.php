@@ -23,18 +23,42 @@
       };
 
       @foreach ($coordinates as $coordinate)
-        var marker{{$coordinate->id}} = new google.maps.Marker({
-          position: new google.maps.LatLng({{$coordinate->latitude}}, {{$coordinate->longitude}}),
-          label: '{{$coordinate->id}}',
-          animation: google.maps.Animation.DROP,
-          @if ($coordinate->last_empty < $coordinate->last_full)
-            icon: icons.full_dump.icon,
-          @else
-            icon: icons.empty_dump.icon,
-          @endif
-          map: map
-        });
+        window.setTimeout(function() {
+          var marker{{$coordinate->id}} = new google.maps.Marker({
+            position: new google.maps.LatLng({{$coordinate->latitude}}, {{$coordinate->longitude}}),
+            label: '{{$coordinate->id}}',
+            animation: google.maps.Animation.DROP,
+            content: 'Bak {{$coordinate->id}} \n Gevuld tot: test',
+            @if ($coordinate->last_empty < $coordinate->last_full)
+              icon: icons.full_dump.icon,
+            @else
+              icon: icons.empty_dump.icon,
+            @endif
+            map: map
+          });
+          marker{{$coordinate->id}}.addListener('click', function() {
+            map.setZoom(16);
+            map.setCenter(marker{{$coordinate->id}}.getPosition());
+          });
+
+          var infoBox = document.createElement('a')
+          infoBox.href = '/buckets/{{$coordinate->id}}'
+          infoBox.innerHTML = 'Details'
+
+          setInfo(marker{{$coordinate->id}}, infoBox);
+        }, 200 * {{$coordinate->id}});
       @endforeach
+
+      function setInfo(marker, message) {
+        var infowindow = new google.maps.InfoWindow({
+          content: message
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(marker.get('map'), marker);
+        });
+      }
+
 
     }
 
