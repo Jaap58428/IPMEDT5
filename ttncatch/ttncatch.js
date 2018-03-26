@@ -4,7 +4,10 @@ var ttn = require("ttn")
 const appID = 'spotless'
 const accessKey = 'ttn-account-v2.VUbE0HHN0NRxMbhvGu7vgtM7BS-Bg9rNyURJlN_3hEw'
 // Set target domain or IP of SpotLess application
+const apiKey = 'oQNMyBjHxhIKK5wNrZANbaWRHCR5Rix2aEHRTJWdJ5u3UrM2keHpm6AA44FH'
 const targetIP = '157.97.171.70'
+// const targetIP = '127.0.0.1'  // For local testing
+
 
 // Welcome message for console
 console.log('-------------------------------------------------');
@@ -22,6 +25,10 @@ ttn.data(appID, accessKey)
       var results = JSON.parse(payload.payload_raw.toString())
       // Parse the payload metadata (input) and add to JSON
       results['bucket_id'] = payload.dev_id.substr(16)
+      // Set the API key as a field for SpotLess to check
+      // This ofcourse is a big security hole as its passed in the body as plain text but its better then nothing
+      // Besides, it is passed around on the same server plus there is a SSL in place
+      results['api_key'] = apiKey
 
       // Log data to console for feedback
       console.log("Meting van bucket " + results.bucket_id);

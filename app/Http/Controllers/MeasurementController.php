@@ -19,6 +19,12 @@ class MeasurementController extends Controller
      */
     public function store(Request $request)
     {
+      // Check for hardcoded API key
+      $api_key = 'oQNMyBjHxhIKK5wNrZANbaWRHCR5Rix2aEHRTJWdJ5u3UrM2keHpm6AA44FH';
+      if ($request->input('api_key') != $api_key) {
+        // When invalid we return http responsecode 'Unautherized'
+        return "Unautherized request 401 - Refer to CatchTTN API key";
+      }
       // Set the limit for when a bucket is full here
       $bucketLimit = 20;
 
