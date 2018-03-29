@@ -1,5 +1,6 @@
 body {
   background-image: url('/img/katwijk-bg.jpg');
+  background-attachment: fixed;
   background-color: white;
   background-size: cover;
   margin: auto;
