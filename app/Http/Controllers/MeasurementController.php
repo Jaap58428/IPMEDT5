@@ -25,7 +25,8 @@ class MeasurementController extends Controller
         // When invalid we return http responsecode 'Unautherized'
         return "Unautherized request 401 - Refer to CatchTTN API key";
       }
-      // Set the limit for when a bucket is full here
+
+      // Set the limit for when a bucket is full here in centimeters
       $bucketLimit = 20;
 
       // Check if an instance of this bucket already exists
@@ -33,6 +34,9 @@ class MeasurementController extends Controller
       // Find or Create a bucket and update its values
       if ($bucketCount == 0) {
         $bucket = new Bucket;
+        // Also pass in the location of the new bucket
+        $bucket->latitude = $request->input('LAT');
+        $bucket->longitude = $request->input('LNG');
       } else {
         $bucket = Bucket::find($request->input('bucket_id'));
       }

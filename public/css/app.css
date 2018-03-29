@@ -86,7 +86,7 @@ main {
 }
 
 .bucketlist {
-  margin: 0;
+  margin: 0 1rem;
   padding: 0;
 }
 
@@ -106,6 +106,7 @@ main {
 
 .list-item:hover {
   border-left: #0082a5 5px solid;
+  background-color: #eee;
 }
 
 .list-small {
@@ -156,4 +157,71 @@ hr {
   width: 100%;
   max-width: 1280px;
   margin: 0;
+}
+
+.admin-page {
+  margin: 1rem;
+}
+
+.alert {
+  position: absolute;
+  border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow: 2px 4px 5px #555;
+  width: calc(100vw - 10rem);
+  padding: 1rem;
+  margin: 4rem;
+  z-index: 9999;
+}
+
+.big-exclam {
+  font-size: 300%;
+}
+
+.alert-good {
+  background-color: limegreen;
+}
+
+.alert-bad {
+  background-color: #f02323;
+}
+
+#ok-btn {
+  cursor: pointer;
+  background-color: white;
+  border: 0;
+  margin: 1rem 0 0 0;
+  padding: 0.5rem;
+}
+
+fieldset {
+  border: 0;
+  padding: 0.5rem 0;
+}
+fieldset input {
+  background-color: lightblue;
+  border: 0;
+  padding: 1rem;
+}
+
+
+.btn {
+  text-decoration: none;
+  color: black;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 0;
+  padding: 0.5rem;
+  transition: 0.2s all;
+}
+
+.btn:hover {
+  color: white;
+}
+
+.btn-default {
+  background-color: lightblue;
+}
+.btn-default:hover {
+  background-color: blue;
 }

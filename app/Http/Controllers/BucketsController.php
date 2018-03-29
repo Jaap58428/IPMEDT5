@@ -15,6 +15,7 @@ class BucketsController extends Controller
      */
     public function __construct()
     {
+        // Always check if the user is loged in when this page is created
         $this->middleware('auth');
     }
 
@@ -43,6 +44,7 @@ class BucketsController extends Controller
     public function show($id)
     {
       $bucket = Bucket::findOrFail($id);
+      // Get all measurements from a specific bucket sorted chronologically
       $measurements = Measurement::where('bucket_id', $bucket->id)->latest('updated_at')->get();
 
       $data = array(
