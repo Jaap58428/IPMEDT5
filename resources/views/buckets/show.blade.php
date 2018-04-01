@@ -6,9 +6,9 @@
     <h2>Details over prullenbak {{$bucket->id}}</h2>
     Deze bak is nu
     @if ($bucket->last_empty < $bucket->last_full)
-      <span class="span-full">Vol</span>
+      <span class="span-full">vol</span>
       @else
-      <span class="span-empty">Leeg</span>
+      <span class="span-empty">leeg</span>
     @endif
     <p>Laatste lege meting<br/> {{$bucket->last_empty}}</p>
     <p>Laatste volle meting<br/> {{$bucket->last_full}}</p>
@@ -36,6 +36,7 @@
 
       var marker{{$bucket->id}} = new google.maps.Marker({
         position: new google.maps.LatLng({{$bucket->latitude}}, {{$bucket->longitude}}),
+        label: '{{$bucket->id}}',
         @if ($bucket->last_empty < $bucket->last_full)
           icon: icons.full_dump.icon,
         @else

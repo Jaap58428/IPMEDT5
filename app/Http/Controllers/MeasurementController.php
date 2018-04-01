@@ -19,7 +19,14 @@ class MeasurementController extends Controller
      */
     public function store(Request $request)
     {
-      // Set the limit for when a bucket is full here
+      // Check for hardcoded API key
+      $api_key = 'oQNMyBjHxhIKK5wNrZANbaWRHCR5Rix2aEHRTJWdJ5u3UrM2keHpm6AA44FH';
+      if ($request->input('api_key') != $api_key) {
+        // When invalid we return http responsecode 'Unautherized'
+        return "Unautherized request 401 - Refer to CatchTTN API key";
+      }
+
+      // Set the limit for when a bucket is full here in centimeters
       $bucketLimit = 20;
 
       // Check if an instance of this bucket already exists
@@ -27,13 +34,16 @@ class MeasurementController extends Controller
       // Find or Create a bucket and update its values
       if ($bucketCount == 0) {
         $bucket = new Bucket;
+        // Also pass in the location of the new bucket
+        $bucket->latitude = $request->input('LAT');
+        $bucket->longitude = $request->input('LNG');
       } else {
         $bucket = Bucket::find($request->input('bucket_id'));
       }
 
       // When a measurement is over the limit this will be marked as a last_full in the bucket id
       // Otherwise it will be last_empty
-      $bucketFull = (($request->input('SA') < $bucketLimit) && ($request->input('SB') < $bucketLimit))
+      $bucketFull = (($request->input('SA') < $bucketLimit) && ($request->input('SB') < $bucketLimit));
       if ($bucketFull) {
         $bucket->last_full = date("Y-m-d H:i:s");
       } else {

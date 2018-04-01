@@ -14,6 +14,7 @@ class PagesController extends Controller
      */
     public function __construct()
     {
+        // Always check if the user is loged in when this page is created
         $this->middleware('auth');
     }
 
@@ -25,9 +26,12 @@ class PagesController extends Controller
     public function map()
     {
       $coordinates = Bucket::all();
+      // The center of the map is based on these coordinates
+      // Ideally the map is configured to contain all markers
+      // This either through an average or map.fitBounds(bounds)
       $mapCenter = [
-        'lat' => 52.209868,
-        'lng' => 4.396633
+        'lat' => 52.201885,
+        'lng' => 4.389917
       ];
 
       $data = array(
@@ -45,6 +49,11 @@ class PagesController extends Controller
      */
     public function settings()
     {
+      // Check wether the user is an admin
+      if (!auth()->user()->isAdmin) {
+        return redirect('/home')->with('error', 'Deze pagina is alleen voor de administrator');
+      }
+
       return view('pages.settings');
     }
 
@@ -55,6 +64,11 @@ class PagesController extends Controller
      */
     public function newUser()
     {
+      // Check wether the user is an admin
+      if (!auth()->user()->isAdmin) {
+        return redirect('/home')->with('error', 'Deze pagina is alleen voor de administrator');
+      }
+
       return view('pages.new-user');
     }
 }

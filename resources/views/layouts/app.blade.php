@@ -46,7 +46,8 @@
       }
     </script>
 
-    <main>
+    <main id="main">
+        @include('messages')
         @yield('content')
     </main>
 

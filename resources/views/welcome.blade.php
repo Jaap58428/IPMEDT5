@@ -8,7 +8,7 @@
     <title>{{ config('app.name', 'SpotLess') }}</title>
 
     <!-- Styles -->
-    <link href="/groep_g/public/css/welcome.css" rel="stylesheet">
+    <link href="/css/welcome.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto" rel="stylesheet">
 </head>
 <body>

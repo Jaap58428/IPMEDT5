@@ -6,13 +6,18 @@
   <script>
     var map;
     function initMap() {
+      // Create the map variable
       var map = new google.maps.Map(document.getElementById('map'), {
+        // set the user view, based of testing
         zoom: 14,
         center: new google.maps.LatLng({{$mapCenter['lat']}}, {{$mapCenter['lng']}}),
         mapTypeId: 'terrain',
+        // disable UI so the user can scroll over the page
+        // without the map instantly responding
         disableDefaultUI: true
       });
 
+      // Set the icons for full and empty
       var icons = {
         full_dump: {
           icon: '/img/full.png'
@@ -22,17 +27,51 @@
         },
       };
 
+      // Loop over all the $coordinates
+      // Every one will have a marker
       @foreach ($coordinates as $coordinate)
-        var marker{{$coordinate->id}} = new google.maps.Marker({
-          position: new google.maps.LatLng({{$coordinate->latitude}}, {{$coordinate->longitude}}),
-          @if ($coordinate->last_empty < $coordinate->last_full)
-            icon: icons.full_dump.icon,
-          @else
-            icon: icons.empty_dump.icon,
-          @endif
-          map: map
-        });
+        window.setTimeout(function() {
+          var marker{{$coordinate->id}} = new google.maps.Marker({
+            position: new google.maps.LatLng({{$coordinate->latitude}}, {{$coordinate->longitude}}),
+            label: '{{$coordinate->id}}',  // the marker will have an id identifier
+            animation: google.maps.Animation.DROP,  // A fancy drop animation
+
+            // Depending on the values of the coordinate it is now empty or full
+            @if ($coordinate->last_empty < $coordinate->last_full)
+              icon: icons.full_dump.icon,
+            @else
+              icon: icons.empty_dump.icon,
+            @endif
+            map: map  // assign the marker to the map
+          });
+
+          // Add a listener so the user can interact with the icon
+          // the map zooms and focusses on the marker when clicked
+          marker{{$coordinate->id}}.addListener('click', function() {
+            map.setZoom(16);
+            map.setCenter(marker{{$coordinate->id}}.getPosition());
+          });
+
+          // Add a infobox to the marker which appears when clicked
+          var infoBox = document.createElement('a')
+          infoBox.href = '/buckets/{{$coordinate->id}}'  // this redirects to the show view
+          infoBox.innerHTML = 'Details'
+
+          setInfo(marker{{$coordinate->id}}, infoBox);
+        }, 200 * {{$coordinate->id}});  // Every 0.2 seconds the next marker drops
+        // For this to work its essential the id's are incrementing integers!!!
       @endforeach
+
+      function setInfo(marker, message) {
+        var infowindow = new google.maps.InfoWindow({
+          content: message
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(marker.get('map'), marker);
+        });
+      }
+
 
     }
 
