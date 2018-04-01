@@ -7,8 +7,6 @@
     <title>{{ config('app.name', 'SpotLess') }}</title>
     <meta name="description" content="Een web applicatie die detecteerd of de prullenbakken van Katwijk vol zijn.">
 
-
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
