@@ -9,7 +9,7 @@
       // Create the map variable
       var map = new google.maps.Map(document.getElementById('map'), {
         // set the user view, based of testing
-        zoom: 14,
+        zoom: 15,
         center: new google.maps.LatLng({{$mapCenter['lat']}}, {{$mapCenter['lng']}}),
         mapTypeId: 'terrain',
         // disable UI so the user can scroll over the page
@@ -48,7 +48,7 @@
           // Add a listener so the user can interact with the icon
           // the map zooms and focusses on the marker when clicked
           marker{{$coordinate->id}}.addListener('click', function() {
-            map.setZoom(16);
+            map.setZoom(18);
             map.setCenter(marker{{$coordinate->id}}.getPosition());
           });
 

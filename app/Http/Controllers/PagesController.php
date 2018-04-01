@@ -30,8 +30,8 @@ class PagesController extends Controller
       // Ideally the map is configured to contain all markers
       // This either through an average or map.fitBounds(bounds)
       $mapCenter = [
-        'lat' => 52.209868,
-        'lng' => 4.396633
+        'lat' => 52.201885,
+        'lng' => 4.389917
       ];
 
       $data = array(
