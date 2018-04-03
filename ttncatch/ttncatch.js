@@ -13,18 +13,26 @@ const targetIP = '157.97.171.70'
 console.log('-------------------------------------------------');
 console.log("Start CatchTTN")
 console.log("A Node.JS application to bridge TTN and SpotLess")
-console.log("Input: JSONs in bytes\nOutput: POST request to API")
-console.log("Version: 1.2")
+console.log("Input: buffer in bytes\nOutput: POST request (JSON) to API")
+console.log("Version: 1.3")
 console.log('-------------------------------------------------\n');
 
 // Start listening to TTN network for packages on certain account
 ttn.data(appID, accessKey)
   .then(function (client) {
     client.on("uplink", function (devID, payload) {
-      // Convert the buffer to a string and parse it to a JSON object
-      var results = JSON.parse(payload.payload_raw.toString())
-      // Parse the payload metadata (input) and add to JSON
-      results['bucket_id'] = payload.dev_id.substr(16)
+      // Convert the buffer to a string and split the values to array
+      var values = payload.payload_raw.toString().split('-')
+
+      // Initialize a JSON and assign values
+      results = {
+        "bucket_id" = payload.dev_id.substr(16),
+        "SA" = values[0],
+        "SB" = values[1],
+        "LAT" = values[2],
+        "LNG" = values[3],
+      }
+
       // Set the API key as a field for SpotLess to check
       // This ofcourse is a big security hole as its passed in the body as plain text but its better then nothing
       // Besides, it is passed around on the same server plus there is a SSL in place
