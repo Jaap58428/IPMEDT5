@@ -26,11 +26,11 @@ ttn.data(appID, accessKey)
 
       // Initialize a JSON and assign values
       results = {
-        "bucket_id" = payload.dev_id.substr(16),
-        "SA" = values[0],
-        "SB" = values[1],
-        "LAT" = values[2],
-        "LNG" = values[3],
+        "bucket_id": payload.dev_id.substr(16),
+        "SA": values[0],
+        "SB": values[1],
+        "LAT": values[2] / 1000000,  // Devide by 1000000 to get real coordinates
+        "LNG": values[3] / 1000000,
       }
 
       // Set the API key as a field for SpotLess to check

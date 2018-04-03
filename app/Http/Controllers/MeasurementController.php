@@ -39,6 +39,8 @@ class MeasurementController extends Controller
         $bucket->longitude = $request->input('LNG');
       } else {
         $bucket = Bucket::find($request->input('bucket_id'));
+        $bucket->latitude = $request->input('LAT');
+        $bucket->longitude = $request->input('LNG');
       }
 
       // When a measurement is over the limit this will be marked as a last_full in the bucket id
