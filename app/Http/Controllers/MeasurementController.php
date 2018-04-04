@@ -34,11 +34,13 @@ class MeasurementController extends Controller
       // Find or Create a bucket and update its values
       if ($bucketCount == 0) {
         $bucket = new Bucket;
-        // Also pass in the location of the new bucket
-        $bucket->latitude = $request->input('LAT');
-        $bucket->longitude = $request->input('LNG');
       } else {
         $bucket = Bucket::find($request->input('bucket_id'));
+      }
+
+      // When the GPS input is 0, this means its blank
+      // Therefor we only modify it when its not 0
+      if ($request->input('LAT') != 0) {
         $bucket->latitude = $request->input('LAT');
         $bucket->longitude = $request->input('LNG');
       }
