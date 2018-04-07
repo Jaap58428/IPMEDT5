@@ -3,6 +3,14 @@
 @section('content')
   <h2 class="page-title">Kaart met prullenbakken</h2>
   <div id="map"></div>
+  <div id="legend">
+    <div>
+      <img src="/img/empty.png" alt=""> Leeg
+    </div>
+    <div>
+      <img src="/img/full.png" alt=""> Vol
+    </div>
+  </div>
   <script>
     var map;
     function initMap() {
@@ -16,6 +24,10 @@
         // without the map instantly responding
         disableDefaultUI: true
       });
+
+      // Put legend in the corner of the map
+      map.controls[google.maps.ControlPosition.LEFT_TOP].push(document.getElementById('legend'));
+
 
       // Set the icons for full and empty
       var icons = {
