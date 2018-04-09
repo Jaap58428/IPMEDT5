@@ -18,7 +18,7 @@
   <div class="wrapper">
     <nav>
       <div class="navbar" id="navbar">
-       <a href="/home">SpotLess</a>
+       <a href="/home">Overzicht</a>
        <a href="/buckets">Lijst</a>
        @if (Auth::user()->isAdmin)
          <a href="/settings">Instellingen</a>
