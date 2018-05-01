@@ -159,6 +159,24 @@ hr {
   margin: 0;
 }
 
+#legend {
+  background: #fff;
+  opacity: 0.6;
+  padding: 0.8rem;
+  padding-bottom: 0;
+  margin: 1rem;
+  font-size: 1rem;
+}
+
+#legend div {
+  padding-bottom: 0.8rem;
+}
+
+#legend img {
+  height: 1.4rem;
+  vertical-align: middle;
+}
+
 .admin-page {
   margin: 1rem;
 }
